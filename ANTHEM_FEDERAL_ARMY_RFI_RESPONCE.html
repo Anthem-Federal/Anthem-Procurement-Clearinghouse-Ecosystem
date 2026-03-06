@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anthem Federal — Army Strategic Capital Initiative RFI Response</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Share+Tech+Mono&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C8A84B;--gold-dim:#8B6914;--gold-bg:#C8A84B11;
+  --blue:#1e88e5;--green:#10b981;--red:#ef4444;--amber:#f59e0b;--purple:#a78bfa;
+  --bg:#030712;--bg2:#0a0f1a;--bg3:#0a1628;--bg4:#060d1a;
+  --border:#1f2937;--text:#e5e7eb;--muted:#6b7280;--dim:#4b5563;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-mono:'Share Tech Mono','Courier New',monospace;
+  --font-body:'Crimson Pro',Georgia,serif;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:13px;overflow:hidden}
+
+/* ── LAYOUT ── */
+#app{display:flex;flex-direction:column;height:100vh}
+#header{background:var(--bg3);border-bottom:2px solid #C8A84B33;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;min-height:54px}
+#body{display:flex;flex:1;overflow:hidden}
+#nav{width:180px;background:var(--bg2);border-right:1px solid var(--border);padding:14px 0;flex-shrink:0;overflow-y:auto}
+#main{flex:1;overflow-y:auto;padding:24px}
+
+/* ── HEADER ── */
+.h-brand{display:flex;align-items:center;gap:12px}
+.h-logo{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold-dim));border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:18px;font-weight:700;color:#fff}
+.h-title{font-family:var(--font-display);font-size:15px;color:var(--gold);letter-spacing:3px}
+.h-sub{font-size:7px;color:var(--dim);letter-spacing:1px;margin-top:2px}
+.h-slogan{text-align:center}
+.h-slogan-main{font-family:var(--font-display);font-style:italic;font-size:13px;color:var(--gold);letter-spacing:5px}
+.h-slogan-sub{font-size:6px;color:var(--dim);letter-spacing:3px;margin-top:2px}
+.h-meta{text-align:right}
+.h-deadline-label{font-size:7px;color:var(--dim);letter-spacing:1px}
+.h-deadline{font-size:11px;color:var(--red)}
+.h-badge{background:var(--gold);color:#000;font-size:7px;font-weight:700;padding:4px 10px;border-radius:2px;letter-spacing:1px;margin-top:4px;display:inline-block}
+
+/* ── NAV ── */
+.tier-label{padding:8px 12px 3px;font-size:6px;letter-spacing:2px;font-weight:700;border-left:2px solid transparent}
+.nav-btn{display:block;width:100%;text-align:left;padding:7px 12px 7px 18px;background:transparent;border:none;border-left:2px solid transparent;cursor:pointer;font-family:var(--font-mono);font-size:9px;letter-spacing:0.5px;color:var(--muted);transition:all 0.15s}
+.nav-btn:hover{color:var(--text);background:#ffffff08}
+.nav-btn.active{background:#0f2744;color:var(--gold);border-left-color:var(--gold)}
+
+/* ── SECTIONS ── */
+.section{display:none}
+.section.active{display:block}
+.sec-tier{font-size:7px;letter-spacing:3px;margin-bottom:3px}
+.sec-title{font-size:10px;letter-spacing:2px;font-weight:700;margin-bottom:8px}
+.sec-divider{height:1px;background:linear-gradient(to right,currentColor,transparent);opacity:0.3;margin-bottom:18px}
+
+/* ── BROWSER FRAME ── */
+.browser{border-radius:4px;overflow:hidden;margin-bottom:14px}
+.browser-bar{background:#111827;padding:7px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.browser-dots{display:flex;gap:5px}
+.browser-dot{width:9px;height:9px;border-radius:50%}
+.browser-url{flex:1;background:#1f2937;border-radius:3px;padding:3px 10px;font-size:9px;color:var(--muted)}
+
+/* ── CARDS ── */
+.card{background:var(--bg3);border-radius:0 4px 4px 0;padding:14px;margin-bottom:10px}
+.card-title{font-size:8px;font-weight:700;letter-spacing:1px;margin-bottom:6px}
+.card-body{font-family:var(--font-body);font-size:10px;line-height:1.7;color:#9ca3af}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}
+
+/* ── TIER CARDS ── */
+.tier-card{background:var(--bg3);border-radius:4px;padding:12px;border:1px solid var(--border)}
+.tier-card-tier{font-size:6px;letter-spacing:2px;margin-bottom:3px}
+.tier-card-name{font-size:9px;font-weight:700;color:var(--text);margin-bottom:2px}
+.tier-card-sub{font-size:7px;color:var(--muted)}
+
+/* ── STAT BAR ── */
+.stat-bar{display:grid;gap:1px;background:var(--border)}
+.stat-cell{background:var(--bg4);padding:10px;text-align:center}
+.stat-val{font-family:var(--font-display);font-size:15px;font-weight:700}
+.stat-label{font-size:7px;color:var(--dim);letter-spacing:1px;margin-top:2px}
+
+/* ── WALKTHROUGH ── */
+.wt-btn{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:6px 10px;cursor:pointer;font-family:var(--font-mono);font-size:8px;color:var(--muted);display:inline-flex;align-items:center;gap:5px;transition:all 0.15s;margin:3px}
+.wt-btn:hover{color:var(--text)}
+.wt-btn.active{background:#0f2744}
+.wt-step{display:none}
+.wt-step.active{display:block}
+.wt-header{border-radius:4px;padding:18px;margin-bottom:14px}
+.wt-icon{font-size:7px;letter-spacing:3px;margin-bottom:4px}
+.wt-subtitle{font-family:var(--font-display);font-size:15px;color:#f9fafb;margin-bottom:5px}
+.wt-actor{font-size:8px;color:var(--dim);letter-spacing:1px;margin-bottom:10px}
+.wt-narrative{font-family:var(--font-body);font-size:10px;line-height:1.8;color:#9ca3af}
+
+/* ── TIMELINE ── */
+.tl-row{display:flex;gap:10px;margin-bottom:6px;align-items:flex-start}
+.tl-time{width:50px;font-size:8px;font-weight:700;flex-shrink:0;padding-top:4px}
+.tl-event{flex:1;background:var(--bg3);border-left:2px solid;border-radius:0 4px 4px 0;padding:7px 10px;display:flex;justify-content:space-between;align-items:center}
+.tl-label{font-size:9px;color:#9ca3af}
+.tl-sys{font-size:7px;color:var(--dim);letter-spacing:1px;margin-left:10px;flex-shrink:0}
+
+/* ── FLYWHEEL ── */
+.flywheel{display:flex;flex-wrap:wrap;justify-content:center;gap:0;margin-bottom:16px}
+.fw-node{background:var(--bg3);border:1px solid #C8A84B44;border-radius:4px;padding:10px 14px;text-align:center;max-width:125px;font-size:9px;color:var(--gold);line-height:1.4}
+.fw-node.final{background:var(--gold);color:#000;font-weight:700}
+.fw-arrow{color:#C8A84B44;font-size:16px;padding:0 4px;align-self:center}
+
+/* ── LEDGER ── */
+.ledger-box{background:#0a0800;border:2px solid var(--amber);border-radius:4px;padding:16px;margin-bottom:12px}
+.ledger-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+.ledger-key{font-size:7px;color:var(--muted);letter-spacing:1px}
+.ledger-val{font-size:9px;color:var(--text);margin-top:2px}
+.ledger-amount{font-family:var(--font-display);font-size:18px;color:var(--amber)}
+.ledger-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #2d2000;padding-top:10px}
+
+/* ── SLOGAN BLOCK ── */
+.slogan-block{background:linear-gradient(135deg,#1a0a2e,var(--bg3));border:1px solid #C8A84B44;border-left:4px solid var(--gold);border-radius:0 4px 4px 0;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.slogan-text{font-family:var(--font-display);font-style:italic;font-size:16px;color:var(--gold);letter-spacing:2px}
+.slogan-sub{font-family:var(--font-body);font-size:9px;color:#9ca3af;margin-top:4px}
+
+/* ── STEP CARDS ── */
+.step-card{background:var(--bg3);border-radius:4px;padding:11px;border:1px solid var(--border)}
+.step-phase{font-size:7px;letter-spacing:2px;margin-bottom:3px}
+.step-label{font-size:9px;font-weight:700;color:var(--text);margin:3px 0}
+.step-desc{font-size:8px;color:var(--muted);line-height:1.5}
+
+/* ── ONBOARD PIPELINE ── */
+.ob-step{background:#0a0000;border:1px solid #2d0020;border-radius:4px;padding:9px;margin-bottom:5px;display:flex;gap:9px;align-items:flex-start}
+.ob-dot{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;flex-shrink:0}
+.ob-label{font-size:8px;font-weight:700;margin-bottom:2px}
+.ob-desc{font-size:7px;color:var(--muted)}
+
+/* ── PRIORITY TABS ── */
+.pri-btn{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:6px 10px;cursor:pointer;font-family:var(--font-mono);font-size:8px;color:var(--muted);display:inline-flex;align-items:center;gap:5px;transition:all 0.15s;margin:3px}
+.pri-btn.active{background:#0f2744;color:var(--gold);border-color:var(--gold)}
+.pri-detail{background:var(--bg3);border-left:3px solid var(--gold);border-radius:0 4px 4px 0;padding:18px;display:none}
+.pri-detail.active{display:block}
+
+/* ── AUDIT STEPS ── */
+.audit-row{display:flex;gap:10px;margin-bottom:7px;align-items:flex-start}
+.audit-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0;margin-top:4px}
+.audit-card{flex:1;background:#00080f;border:1px solid #1e3a5f;border-left:2px solid;border-radius:0 4px 4px 0;padding:9px}
+.audit-head{display:flex;justify-content:space-between;margin-bottom:3px}
+.audit-step{font-size:9px;font-weight:700}
+.audit-sys{font-size:7px;color:var(--dim);letter-spacing:1px}
+.audit-desc{font-size:8px;color:#9ca3af;line-height:1.5}
+
+/* ── CHECKS ── */
+.check-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px}
+.check-item{background:#0a0000;border:1px solid #064e3b;border-radius:4px;padding:8px;display:flex;justify-content:space-between;align-items:center}
+.check-label{font-size:8px;color:#9ca3af}
+.check-status{font-size:7px;color:var(--green);font-weight:700}
+
+/* ── CAPITAL FLOW ── */
+.cf-flow{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.cf-node{background:var(--bg4);border-radius:4px;padding:7px 9px;text-align:center;min-width:80px;border:1px solid transparent;border-top:2px solid}
+.cf-name{font-size:8px;font-weight:700}
+.cf-sub{font-size:6px;color:var(--muted);margin-top:1px}
+.cf-arrow{color:#4b5563;font-size:14px}
+
+/* ── LEDGER ROWS ── */
+.ledger-row{background:#111005;border:1px solid #2d2000;border-radius:3px;padding:6px 9px;margin-bottom:4px;display:grid;grid-template-columns:1.2fr 1.2fr 1.2fr auto auto;gap:6px;align-items:center}
+
+/* ── DEMO LINKS ── */
+.demo-card{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.demo-label{font-size:10px;font-weight:700;color:var(--gold);margin-bottom:5px}
+.demo-desc{font-size:8px;color:var(--muted);margin-bottom:8px}
+.demo-url{color:#3b82f6;font-size:9px;text-decoration:none}
+.demo-url:hover{text-decoration:underline}
+.demo-btn{background:var(--gold);color:#000;font-size:8px;font-weight:700;padding:8px 14px;border-radius:3px;text-decoration:none;letter-spacing:1px;white-space:nowrap;margin-left:16px}
+.demo-btn:hover{background:#d4af37}
+
+/* ── BEFORE LIST ── */
+.before-item{font-size:9px;color:#9ca3af;padding:3px 0;border-bottom:1px solid #1a0000;display:flex;gap:7px}
+
+/* ── CONTACT ── */
+.contact-field{border-left:1px solid #C8A84B33;padding-left:12px}
+.contact-key{font-size:7px;color:var(--dim);letter-spacing:1px;margin-bottom:2px}
+.contact-val{font-size:9px;color:var(--text)}
+
+/* ── CLOSING SLOGAN ── */
+.closing-slogan{background:linear-gradient(135deg,#1a0a2e,var(--bg3));border:1px solid #C8A84B44;border-radius:4px;padding:20px;text-align:center;margin-top:14px}
+.closing-slogan-main{font-family:var(--font-display);font-style:italic;font-size:22px;color:var(--gold);letter-spacing:4px}
+.closing-slogan-sub{font-size:8px;color:var(--dim);letter-spacing:2px;margin-top:4px}
+
+/* ── BADGES ── */
+.badge{font-size:6px;padding:2px 5px;border-radius:2px;font-weight:700;letter-spacing:0.5px}
+.badge-green{background:#064e3b;color:var(--green)}
+.badge-amber{background:#451a03;color:var(--amber)}
+.badge-blue{background:#1e3a5f;color:var(--blue)}
+.badge-red{background:#4a0000;color:var(--red)}
+.badge-gold{background:var(--gold);color:#000}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:#374151;border-radius:2px}
+
+/* ── ANIMATIONS ── */
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.4}}
+.pulse{animation:pulse-dot 2s ease-in-out infinite}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- HEADER -->
+  <div id="header">
+    <div class="h-brand">
+      <div class="h-logo">A</div>
+      <div>
+        <div class="h-title">ANTHEM FEDERAL</div>
+        <div class="h-sub">ARMY STRATEGIC CAPITAL INITIATIVE · ACC-RI · W6QK</div>
+      </div>
+    </div>
+    <div class="h-slogan">
+      <div class="h-slogan-main">LETHALITY THROUGH LOGISTICS</div>
+      <div class="h-slogan-sub">PAYMENT IS THE INNOVATION</div>
+    </div>
+    <div class="h-meta">
+      <div class="h-deadline-label">RESPONSE DEADLINE</div>
+      <div class="h-deadline">APR 02, 2026 · 17:00 EDT</div>
+      <div class="h-badge">UNCLASSIFIED</div>
+    </div>
+  </div>
+
+  <div id="body">
+
+    <!-- NAV -->
+    <div id="nav">
+      <div class="tier-label" style="color:var(--gold)">TIER 1 — PLATFORM</div>
+      <button class="nav-btn active" onclick="show('anthem',this)" style="--active-color:var(--gold)">Anthem Federal</button>
+
+      <div class="tier-label" style="color:var(--blue);margin-top:6px">TIER 2 — PROCUREMENT</div>
+      <button class="nav-btn" onclick="show('warfighter',this)">Warfighter Prime</button>
+      <button class="nav-btn" onclick="show('apex',this)">Apex Sentinel</button>
+
+      <div class="tier-label" style="color:var(--green);margin-top:6px">TIER 3 — WORKFLOW</div>
+      <button class="nav-btn" onclick="show('orchard',this)">ORCHARD / AWE</button>
+      <button class="nav-btn" onclick="show('clausal',this)">CLAUSAL</button>
+
+      <div class="tier-label" style="color:var(--amber);margin-top:6px">TIER 4 — FINANCE</div>
+      <button class="nav-btn" onclick="show('fedbit',this)">Fedbit</button>
+      <button class="nav-btn" onclick="show('banking',this)">Banking Partners</button>
+      <button class="nav-btn" onclick="show('audit',this)">Audit Trail</button>
+
+      <div class="tier-label" style="color:var(--purple);margin-top:6px">TIER 5 — VENDORS</div>
+      <button class="nav-btn" onclick="show('vendor',this)">Vendor Portal</button>
+      <button class="nav-btn" onclick="show('usecase',this)">Vendor Walkthrough</button>
+
+      <div class="tier-label" style="color:var(--muted);margin-top:6px">INTEL</div>
+      <button class="nav-btn" onclick="show('priorities',this)">Army Priorities</button>
+      <button class="nav-btn" onclick="show('demos',this)">Live Demos</button>
+      <button class="nav-btn" onclick="show('contact',this)">Contact</button>
+    </div>
+
+    <!-- MAIN -->
+    <div id="main">
+
+      <!-- ══ ANTHEM FEDERAL ══ -->
+      <div id="s-anthem" class="section active">
+        <div class="sec-tier" style="color:var(--gold)">TIER 1 — PLATFORM</div>
+        <div class="sec-title" style="color:var(--gold)">ANTHEM FEDERAL — CLEARINGHOUSE & GOVERNANCE LAYER</div>
+        <div class="sec-divider" style="color:var(--gold)"></div>
+
+        <div class="browser" style="border-top:3px solid var(--gold);border:1px solid #C8A84B33">
+          <div class="browser-bar">
+            <div class="browser-dots"><div class="browser-dot" style="background:#ff5f57"></div><div class="browser-dot" style="background:#febc2e"></div><div class="browser-dot" style="background:#28c840"></div></div>
+            <div class="browser-url">anthem-federal.gov/dashboard</div>
+          </div>
+          <div style="background:var(--bg4)">
+            <div style="background:var(--bg3);padding:9px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #C8A84B33">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:26px;height:26px;background:linear-gradient(135deg,var(--gold),var(--gold-dim));border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:13px;font-weight:700;color:#fff">A</div>
+                <span style="color:var(--gold);font-family:var(--font-display);font-size:13px;letter-spacing:2px">ANTHEM FEDERAL</span>
+                <span style="color:var(--dim);font-size:8px;letter-spacing:1px">PRIME CONTRACTOR CLEARING HOUSE</span>
+              </div>
+              <div style="display:flex;gap:14px">
+                <span style="color:var(--dim);font-size:8px">MARKETPLACE</span>
+                <span style="color:var(--gold);font-size:8px">PAYMENTS</span>
+                <span style="color:var(--dim);font-size:8px">VENDORS</span>
+                <span style="color:var(--dim);font-size:8px">FEDBIT</span>
+                <span style="color:var(--dim);font-size:8px">ANALYTICS</span>
+              </div>
+            </div>
+            <div style="padding:14px 18px;background:linear-gradient(135deg,var(--bg3),#0f1e35);position:relative;overflow:hidden">
+              <div style="font-size:7px;color:var(--gold);letter-spacing:4px;margin-bottom:4px">STRATEGIC CAPITAL CLEARINGHOUSE</div>
+              <div style="font-family:var(--font-display);font-size:20px;color:var(--text);line-height:1.2">Defense Procurement <span style="color:var(--gold)">Reimagined.</span></div>
+              <div style="font-family:var(--font-display);font-style:italic;font-size:9px;color:var(--gold);letter-spacing:3px;margin-top:6px">LETHALITY THROUGH LOGISTICS</div>
+            </div>
+            <div class="stat-bar" style="grid-template-columns:repeat(5,1fr)">
+              <div class="stat-cell"><div class="stat-val" style="color:var(--gold)">$2.4B</div><div class="stat-label">Capital Deployed</div></div>
+              <div class="stat-cell"><div class="stat-val" style="color:var(--gold)">847</div><div class="stat-label">Vendors Qualified</div></div>
+              <div class="stat-cell"><div class="stat-val" style="color:var(--gold)">99.2%</div><div class="stat-label">FAR Compliance</div></div>
+              <div class="stat-cell"><div class="stat-val" style="color:var(--gold)">100%</div><div class="stat-label">Audit Coverage</div></div>
+              <div class="stat-cell"><div class="stat-val" style="color:var(--gold)">$0</div><div class="stat-label">Unreconciled</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-bottom:14px">
+          <div class="card" style="border-left:3px solid var(--gold)">
+            <div class="card-title" style="color:var(--gold)">THE CLEARINGHOUSE MODEL</div>
+            <div class="card-body">Anthem Federal is the prime contractor and financial clearinghouse at the center of the ecosystem. When a Contracting Officer approves a purchase on Warfighter Prime, Anthem Federal fronts the payment immediately — before the government disbursement cycle completes. Anthem is made whole when the government pays. The vendor gets paid in hours, not months. This is the innovation.</div>
+          </div>
+          <div class="card" style="border-left:3px solid var(--gold)">
+            <div class="card-title" style="color:var(--gold)">WHY THIS IS THE ARMY'S MODEL</div>
+            <div class="card-body">The Army's RFI asked for a commercially viable, self-sustaining operating model where the Army acts as an anchor customer without appropriated funds being the sole ROI. Anthem Federal generates commercial marketplace revenue, platform licensing, and data services revenue — diversifying away from appropriations dependency while the Army remains a stable, long-term partner.</div>
+          </div>
+        </div>
+
+        <div style="font-size:8px;color:var(--dim);letter-spacing:2px;margin-bottom:10px">ECOSYSTEM COMPONENTS — OPERATIONAL TIERS</div>
+        <div class="grid3">
+          <div class="tier-card" style="border-top:2px solid var(--blue)"><div class="tier-card-tier" style="color:var(--blue)">TIER 2 — PROCUREMENT</div><div class="tier-card-name">Warfighter Prime + Apex Sentinel</div><div class="tier-card-sub">Marketplace + Security</div></div>
+          <div class="tier-card" style="border-top:2px solid var(--green)"><div class="tier-card-tier" style="color:var(--green)">TIER 3 — WORKFLOW</div><div class="tier-card-name">ORCHARD v2.0 + AWE + CLAUSAL</div><div class="tier-card-sub">Acquisition + Compliance</div></div>
+          <div class="tier-card" style="border-top:2px solid var(--amber)"><div class="tier-card-tier" style="color:var(--amber)">TIER 4 — FINANCE</div><div class="tier-card-name">Fedbit + Banking + Audit Trail</div><div class="tier-card-sub">Settlement + Oversight</div></div>
+          <div class="tier-card" style="border-top:2px solid var(--purple)"><div class="tier-card-tier" style="color:var(--purple)">TIER 5 — VENDORS</div><div class="tier-card-name">Vendor Integration Portal</div><div class="tier-card-sub">Onboarding + Operations</div></div>
+          <div class="tier-card" style="border-top:2px solid var(--red)"><div class="tier-card-tier" style="color:var(--red)">ARMY ANCHOR</div><div class="tier-card-name">6 Strategic Priority Areas</div><div class="tier-card-sub">De-risked Investment</div></div>
+          <div class="tier-card" style="border-top:2px solid #8b5cf6"><div class="tier-card-tier" style="color:#8b5cf6">COMMERCIAL</div><div class="tier-card-name">Dual-Use Revenue Market</div><div class="tier-card-sub">Self-Sustaining Platform</div></div>
+        </div>
+      </div>
+
+      <!-- ══ WARFIGHTER PRIME ══ -->
+      <div id="s-warfighter" class="section">
+        <div class="sec-tier" style="color:var(--blue)">TIER 2 — PROCUREMENT</div>
+        <div class="sec-title" style="color:var(--blue)">WARFIGHTER PRIME — DEFENSE PROCUREMENT MARKETPLACE</div>
+        <div class="sec-divider" style="color:var(--blue)"></div>
+
+        <div class="browser" style="border-top:3px solid var(--blue);border:1px solid #1e88e533">
+          <div class="browser-bar"><div class="browser-dots"><div class="browser-dot" style="background:#ff5f57"></div><div class="browser-dot" style="background:#febc2e"></div><div class="browser-dot" style="background:#28c840"></div></div><div class="browser-url">warfighter-prime.gov/browse</div></div>
+          <div style="background:#f8f9fa">
+            <div style="background:#1a237e;padding:9px 18px;display:flex;align-items:center;gap:12px">
+              <span style="font-size:15px">⭐</span>
+              <span style="color:#fff;font-size:12px;font-weight:700;letter-spacing:1px">WARFIGHTER PRIME</span>
+              <span class="badge badge-gold">v1.7</span>
+              <div style="flex:1;background:#fff;border-radius:3px;padding:5px 10px;font-size:10px;color:#9ca3af">🔍 Search defense equipment, supplies, technology...</div>
+              <span style="font-size:9px;color:#90caf9">🛒 Cart (3)</span>
+              <span style="font-size:9px;color:#90caf9">📋 Orders</span>
+            </div>
+            <div style="background:#283593;padding:5px 18px;display:flex;gap:14px">
+              <span style="color:#FFD700;font-size:8px">All Categories</span>
+              <span style="color:#b3c5ff;font-size:8px">Energy Systems</span>
+              <span style="color:#b3c5ff;font-size:8px">Logistics</span>
+              <span style="color:#b3c5ff;font-size:8px">Manufacturing</span>
+              <span style="color:#b3c5ff;font-size:8px">Facilities</span>
+              <span style="color:#b3c5ff;font-size:8px">Critical Materials</span>
+            </div>
+            <div style="padding:10px 14px">
+              <div style="font-size:9px;color:#374151;margin-bottom:8px;font-weight:700">⚡ 147 compliant vendors · Fedbit payment enabled · Apex Sentinel active</div>
+              <div class="grid3">
+                <div style="background:#fff;border:1px solid #e5e7eb;border-radius:4px;padding:9px">
+                  <div style="height:40px;background:linear-gradient(135deg,#e8eaf6,#c5cae9);border-radius:3px;margin-bottom:7px;display:flex;align-items:center;justify-content:center;font-size:18px">⚡</div>
+                  <div style="font-size:9px;font-weight:700;color:#111827;margin-bottom:2px">Modular Microgrid System</div>
+                  <div style="font-size:7px;color:#6b7280;margin-bottom:3px">GridForce Defense LLC</div>
+                  <div style="font-size:11px;font-weight:700;color:#1a237e">$284,500</div>
+                  <div style="display:flex;gap:3px;margin-top:3px"><span class="badge badge-green">✓ FAR 52.212-4</span><span class="badge" style="background:#fff3e0;color:#e65100">⬡ Fedbit</span></div>
+                  <div style="background:#FFD700;color:#000;font-size:7px;font-weight:700;padding:3px;border-radius:3px;text-align:center;margin-top:5px">Add to Acquisition</div>
+                </div>
+                <div style="background:#fff;border:1px solid #e5e7eb;border-radius:4px;padding:9px">
+                  <div style="height:40px;background:linear-gradient(135deg,#e8eaf6,#c5cae9);border-radius:3px;margin-bottom:7px;display:flex;align-items:center;justify-content:center;font-size:18px">🔋</div>
+                  <div style="font-size:9px;font-weight:700;color:#111827;margin-bottom:2px">Industrial Battery Array 1MW</div>
+                  <div style="font-size:7px;color:#6b7280;margin-bottom:3px">AmeriStore Energy</div>
+                  <div style="font-size:11px;font-weight:700;color:#1a237e">$1,240,000</div>
+                  <div style="display:flex;gap:3px;margin-top:3px"><span class="badge badge-green">✓ DFARS Compliant</span><span class="badge" style="background:#fff3e0;color:#e65100">⬡ Fedbit</span></div>
+                  <div style="background:#FFD700;color:#000;font-size:7px;font-weight:700;padding:3px;border-radius:3px;text-align:center;margin-top:5px">Add to Acquisition</div>
+                </div>
+                <div style="background:#fff;border:1px solid #e5e7eb;border-radius:4px;padding:9px">
+                  <div style="height:40px;background:linear-gradient(135deg,#e8eaf6,#c5cae9);border-radius:3px;margin-bottom:7px;display:flex;align-items:center;justify-content:center;font-size:18px">☀️</div>
+                  <div style="font-size:9px;font-weight:700;color:#111827;margin-bottom:2px">Solar + Storage Kit, Expeditionary</div>
+                  <div style="font-size:7px;color:#6b7280;margin-bottom:3px">TacticalSun Inc.</div>
+                  <div style="font-size:11px;font-weight:700;color:#1a237e">$67,800</div>
+                  <div style="display:flex;gap:3px;margin-top:3px"><span class="badge badge-green">✓ AbilityOne</span><span class="badge" style="background:#fff3e0;color:#e65100">⬡ Fedbit</span></div>
+                  <div style="background:#FFD700;color:#000;font-size:7px;font-weight:700;padding:3px;border-radius:3px;text-align:center;margin-top:5px">Add to Acquisition</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card" style="border-left:3px solid var(--blue)"><div class="card-title" style="color:var(--blue)">FAR/DFARS COMPLIANCE BUILT IN</div><div class="card-body">Every checkout flow on Warfighter Prime runs through CLAUSAL compliance verification before an order can proceed. FAR/DFARS compliance is not a step the buyer takes — it is built into the transaction architecture.</div></div>
+          <div class="card" style="border-left:3px solid var(--blue)"><div class="card-title" style="color:var(--blue)">FEDBIT PAYMENT AT CHECKOUT</div><div class="card-body">When the Contracting Officer approves, Fedbit settles the payment in hours — not months. Vendors invest in inventory because they know payment is guaranteed and fast. That is the commercial flywheel that creates warfighter readiness.</div></div>
+          <div class="card" style="border-left:3px solid var(--blue)"><div class="card-title" style="color:var(--blue)">ARMY AS ANCHOR CUSTOMER</div><div class="card-body">The Army's participation as a stable, long-term anchor customer de-risks vendor investment in the platform. Commercial market buyers using the same marketplace diversify revenue away from appropriations dependency.</div></div>
+          <div class="card" style="border-left:3px solid var(--blue)"><div class="card-title" style="color:var(--blue)">5-STAR VENDOR COMPETITION</div><div class="card-body">Multiple vendors offer the same product categories. A 5-star review system visible to all DoD buyers drives genuine quality competition — the same mechanism that made Amazon a trusted commerce platform.</div></div>
+        </div>
+      </div>
+
+      <!-- ══ APEX SENTINEL ══ -->
+      <div id="s-apex" class="section">
+        <div class="sec-tier" style="color:var(--red)">TIER 2 — PROCUREMENT (SECURITY LAYER)</div>
+        <div class="sec-title" style="color:var(--red)">APEX SENTINEL — AI SECURITY OVERWATCH</div>
+        <div class="sec-divider" style="color:var(--red)"></div>
+
+        <div class="browser" style="border-top:3px solid var(--red);border:1px solid #ef444433">
+          <div class="browser-bar"><div class="browser-dots"><div class="browser-dot" style="background:#ff5f57"></div><div class="browser-dot" style="background:#febc2e"></div><div class="browser-dot" style="background:#28c840"></div></div><div class="browser-url">anthem-federal.gov/apex-sentinel/monitor</div></div>
+          <div style="background:#0a0000">
+            <div style="background:#110000;padding:9px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ef444433">
+              <div style="display:flex;align-items:center;gap:9px">
+                <div style="width:24px;height:24px;background:linear-gradient(135deg,var(--red),#7f1d1d);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px">🛡</div>
+                <div><div style="color:var(--red);font-size:12px;font-weight:700;letter-spacing:3px">APEX SENTINEL</div><div style="color:var(--muted);font-size:6px;letter-spacing:2px">AI SECURITY OVERWATCH · ALL ECOSYSTEM COMPONENTS</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:7px">
+                <div class="pulse" style="width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 7px var(--green)"></div>
+                <span style="color:var(--green);font-size:8px;letter-spacing:1px">ALL SYSTEMS NOMINAL</span>
+              </div>
+            </div>
+            <div class="stat-bar" style="grid-template-columns:repeat(4,1fr)">
+              <div class="stat-cell" style="background:#0a0000"><div class="stat-val" style="color:var(--red)">0</div><div class="stat-label">Active Threats</div></div>
+              <div class="stat-cell" style="background:#0a0000"><div class="stat-val" style="color:var(--red)">2,847</div><div class="stat-label">Txns Monitored</div></div>
+              <div class="stat-cell" style="background:#0a0000"><div class="stat-val" style="color:var(--red)">100%</div><div class="stat-label">Coverage</div></div>
+              <div class="stat-cell" style="background:#0a0000"><div class="stat-val" style="color:var(--red)">&lt;0.3ms</div><div class="stat-label">Detection</div></div>
+            </div>
+            <div class="grid2" style="padding:10px 14px">
+              <div style="background:#110000;border:1px solid #2d0000;border-radius:4px;padding:9px">
+                <div style="font-size:7px;color:var(--red);letter-spacing:1px;margin-bottom:6px">MONITORING DOMAINS</div>
+                <div style="font-size:7px;color:#9ca3af;padding:2px 0;border-bottom:1px solid #1a0000;display:flex;gap:5px"><span style="color:var(--green)">●</span>Warfighter Prime transactions</div>
+                <div style="font-size:7px;color:#9ca3af;padding:2px 0;border-bottom:1px solid #1a0000;display:flex;gap:5px"><span style="color:var(--green)">●</span>Anthem Federal clearinghouse</div>
+                <div style="font-size:7px;color:#9ca3af;padding:2px 0;border-bottom:1px solid #1a0000;display:flex;gap:5px"><span style="color:var(--green)">●</span>Fedbit ledger integrity</div>
+                <div style="font-size:7px;color:#9ca3af;padding:2px 0;border-bottom:1px solid #1a0000;display:flex;gap:5px"><span style="color:var(--green)">●</span>Vendor wallet activity</div>
+                <div style="font-size:7px;color:#9ca3af;padding:2px 0;border-bottom:1px solid #1a0000;display:flex;gap:5px"><span style="color:var(--green)">●</span>ORCHARD approval workflow</div>
+                <div style="font-size:7px;color:#9ca3af;padding:2px 0;display:flex;gap:5px"><span style="color:var(--green)">●</span>Network intrusion detection</div>
+              </div>
+              <div style="background:#110000;border:1px solid #2d0000;border-radius:4px;padding:9px">
+                <div style="font-size:7px;color:var(--red);letter-spacing:1px;margin-bottom:6px">SECURITY SPECS</div>
+                <div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #1a0000;font-size:7px"><span style="color:var(--muted)">Classification</span><span style="color:var(--text)">SECRET minimum / txn</span></div>
+                <div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #1a0000;font-size:7px"><span style="color:var(--muted)">Network</span><span style="color:var(--text)">NMCI integration ready</span></div>
+                <div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #1a0000;font-size:7px"><span style="color:var(--muted)">Enclaves</span><span style="color:var(--text)">NIPR and SIPR capable</span></div>
+                <div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #1a0000;font-size:7px"><span style="color:var(--muted)">Architecture</span><span style="color:var(--text)">Zero-trust</span></div>
+                <div style="display:flex;justify-content:space-between;padding:2px 0;font-size:7px"><span style="color:var(--muted)">Sessions</span><span style="color:var(--text)">Ephemeral / session-burn</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="border-left:3px solid var(--red)">
+          <div class="card-title" style="color:var(--red)">WHY APEX SENTINEL IS NON-NEGOTIABLE</div>
+          <div class="card-body">A defense procurement clearinghouse moving billions of dollars through a digital token system is an extraordinarily high-value target. Apex Sentinel is not optional — it is the security layer that makes the entire Anthem Federal ecosystem trustworthy for DoD use. Without it, Fedbit would not meet the security requirements necessary for government adoption. With it, every transaction carries SECRET-level security handling by default.</div>
+        </div>
+      </div>
+
+      <!-- ══ ORCHARD ══ -->
+      <div id="s-orchard" class="section">
+        <div class="sec-tier" style="color:var(--green)">TIER 3 — WORKFLOW</div>
+        <div class="sec-title" style="color:var(--green)">ORCHARD v2.0 / AWE — ACQUISITION WORKFLOW ENGINE</div>
+        <div class="sec-divider" style="color:var(--green)"></div>
+
+        <div class="browser" style="border-top:3px solid var(--green);border:1px solid #10b98133">
+          <div class="browser-bar"><div class="browser-dots"><div class="browser-dot" style="background:#ff5f57"></div><div class="browser-dot" style="background:#febc2e"></div><div class="browser-dot" style="background:#28c840"></div></div><div class="browser-url">anthem-federal.github.io/Aqusition_Workflow_Environment</div></div>
+          <div style="background:#0f172a;display:flex">
+            <div style="width:110px;background:var(--bg2);border-right:1px solid #1e3a2a;padding:10px 0;flex-shrink:0">
+              <div style="padding:0 10px 8px;border-bottom:1px solid #1e3a2a;margin-bottom:6px"><div style="color:var(--green);font-weight:700;font-size:10px;letter-spacing:2px">ORCHARD</div><div style="color:var(--dim);font-size:6px">v2.0 · AWE</div></div>
+              <div style="padding:6px 10px;display:flex;align-items:center;gap:6px"><span>📊</span><span style="color:var(--dim);font-size:8px">Dashboard</span></div>
+              <div style="padding:6px 10px;display:flex;align-items:center;gap:6px;background:#064e3b;border-left:2px solid var(--green)"><span>📝</span><span style="color:var(--green);font-size:8px">Requirements</span></div>
+              <div style="padding:6px 10px;display:flex;align-items:center;gap:6px"><span>✅</span><span style="color:var(--dim);font-size:8px">Validation</span></div>
+              <div style="padding:6px 10px;display:flex;align-items:center;gap:6px"><span>🔄</span><span style="color:var(--dim);font-size:8px">Approvals</span></div>
+              <div style="padding:6px 10px;display:flex;align-items:center;gap:6px"><span>⚖️</span><span style="color:var(--dim);font-size:8px">FAR/DFARS</span></div>
+              <div style="padding:6px 10px;display:flex;align-items:center;gap:6px"><span>📤</span><span style="color:var(--dim);font-size:8px">Export</span></div>
+            </div>
+            <div style="flex:1;padding:12px">
+              <div style="background:var(--bg3);border:1px solid #1e3a2a;border-radius:4px;padding:9px;margin-bottom:8px">
+                <div style="font-size:8px;color:var(--green);letter-spacing:1px;margin-bottom:7px">APPROVAL WORKFLOW — PM → CS → KO</div>
+                <div style="display:flex;align-items:center;gap:3px">
+                  <div style="flex:1;background:#064e3b;border:1px solid #10b98144;border-radius:3px;padding:5px;text-align:center"><div style="font-size:6px;color:#9ca3af">Program Manager</div><div style="font-size:7px;color:var(--green);font-weight:700">✓ APPROVED</div></div>
+                  <div style="width:10px;height:1px;background:#10b98144"></div>
+                  <div style="flex:1;background:#064e3b;border:1px solid #10b98144;border-radius:3px;padding:5px;text-align:center"><div style="font-size:6px;color:#9ca3af">Contract Specialist</div><div style="font-size:7px;color:var(--green);font-weight:700">✓ APPROVED</div></div>
+                  <div style="width:10px;height:1px;background:#10b98144"></div>
+                  <div style="flex:1;background:#451a03;border:1px solid #f59e0b44;border-radius:3px;padding:5px;text-align:center"><div style="font-size:6px;color:#9ca3af">Contracting Officer</div><div style="font-size:7px;color:var(--amber);font-weight:700">⚠ PENDING</div></div>
+                </div>
+              </div>
+              <div style="background:var(--bg3);border:1px solid #1e3a2a;border-radius:4px;padding:9px">
+                <div style="font-size:7px;color:var(--green);letter-spacing:1px;margin-bottom:6px">VALIDATION ENGINE — FAR/DFARS + FEDBIT AUDIT</div>
+                <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1e3a2a"><span style="font-size:7px;color:var(--muted)">FAR 52.204-21</span><span style="font-size:7px;color:var(--green);font-weight:700">✓ PASS</span></div>
+                <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1e3a2a"><span style="font-size:7px;color:var(--muted)">DFARS 252.204-7012</span><span style="font-size:7px;color:var(--green);font-weight:700">✓ PASS</span></div>
+                <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1e3a2a"><span style="font-size:7px;color:var(--muted)">Fedbit Integrity Check</span><span style="font-size:7px;color:var(--green);font-weight:700">✓ PASS</span></div>
+                <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1e3a2a"><span style="font-size:7px;color:var(--muted)">Audit Trail Verified</span><span style="font-size:7px;color:var(--green);font-weight:700">✓ PASS</span></div>
+                <div style="display:flex;justify-content:space-between;padding:3px 0"><span style="font-size:7px;color:var(--muted)">OTA Structure</span><span style="font-size:7px;color:var(--amber);font-weight:700">⚠ REVIEW</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid4" style="margin-bottom:14px">
+          <div class="step-card" style="border-top:2px solid var(--green)"><div class="step-phase" style="color:var(--green)">PHASE 01</div><div class="step-label">Requirement Creation</div><div class="step-desc">5-step wizard. SOW generation. PWS templates. IGCE. Full logging from keystroke one.</div></div>
+          <div class="step-card" style="border-top:2px solid var(--green)"><div class="step-phase" style="color:var(--green)">PHASE 02</div><div class="step-label">FAR/DFARS Validation</div><div class="step-desc">Automated compliance. CLAUSAL integration. Missing items detection. Clause-by-clause review.</div></div>
+          <div class="step-card" style="border-top:2px solid var(--green)"><div class="step-phase" style="color:var(--green)">PHASE 03</div><div class="step-label">Approval Workflow</div><div class="step-desc">PM → CS → KO gates. Approval modal with notes. Full audit trail. Fedbit trigger on KO sign.</div></div>
+          <div class="step-card" style="border-top:2px solid var(--green)"><div class="step-phase" style="color:var(--green)">PHASE 04</div><div class="step-label">Export & Execute</div><div class="step-desc">Document package. Fedbit initiated. DFAS notified. Vendor portal updated automatically.</div></div>
+        </div>
+
+        <div style="background:var(--bg3);border:1px solid #064e3b;border-radius:4px;padding:13px">
+          <div style="font-size:8px;color:var(--green);letter-spacing:2px;margin-bottom:6px">LIVE PLATFORM</div>
+          <a href="https://anthem-federal.github.io/Aqusition_Workflow_Environment/" target="_blank" style="color:#8b5cf6;font-size:10px;text-decoration:none">↗ anthem-federal.github.io/Aqusition_Workflow_Environment</a>
+          <p style="color:var(--muted);font-size:8px;line-height:1.6;margin:5px 0 0">Full ORCHARD v2.0 / AWE platform — live and operational. Complete acquisition workflow from requirement creation through KO approval. No login required.</p>
+        </div>
+      </div>
+
+      <!-- ══ CLAUSAL ══ -->
+      <div id="s-clausal" class="section">
+        <div class="sec-tier" style="color:var(--green)">TIER 3 — WORKFLOW (COMPLIANCE ENGINE)</div>
+        <div class="sec-title" style="color:var(--green)">CLAUSAL — FAR/DFARS COMPLIANCE ANALYZER</div>
+        <div class="sec-divider" style="color:var(--green)"></div>
+        <div style="background:var(--bg3);border:1px solid #064e3b;border-top:3px solid var(--green);border-radius:4px;padding:20px;margin-bottom:16px">
+          <div style="font-family:var(--font-display);font-size:17px;color:#f9fafb;margin-bottom:8px">Every clause. Every regulation. Every transaction. Verified at machine speed.</div>
+          <p style="font-family:var(--font-body);font-size:10px;line-height:1.7;color:#9ca3af;margin:0 0 14px">CLAUSAL is the FAR/DFARS compliance analysis engine powering Warfighter Prime's checkout and ORCHARD's validation phase. It cross-references every acquisition package against current regulations, identifies missing clauses, flags conflicts, and generates a compliance report — automatically, before any human reviewer touches the file.</p>
+          <a href="https://shdwdvr.github.io/CLAUSAL/" target="_blank" style="background:var(--green);color:#000;font-size:8px;font-weight:700;padding:8px 14px;border-radius:3px;text-decoration:none;letter-spacing:1px;display:inline-block">OPEN LIVE DEMO →</a>
+        </div>
+        <div class="grid2">
+          <div class="card" style="border-left:3px solid var(--green)"><div class="card-title" style="color:var(--green)">WHAT CLAUSAL ANALYZES</div><div class="card-body">FAR Parts 1–53, DFARS Parts 201–253, agency supplements, clause matrix requirements, deviation tracking, and cross-reference validation against the most current published regulations.</div></div>
+          <div class="card" style="border-left:3px solid var(--green)"><div class="card-title" style="color:var(--green)">HOW IT INTEGRATES</div><div class="card-body">CLAUSAL runs automatically when a Warfighter Prime cart is submitted and again during ORCHARD's validation phase. Results are logged immutably as part of the transaction audit trail.</div></div>
+          <div class="card" style="border-left:3px solid var(--green)"><div class="card-title" style="color:var(--green)">WHY IT MATTERS</div><div class="card-body">Manual FAR/DFARS compliance review is the single biggest bottleneck in DoD acquisition. CLAUSAL eliminates the bottleneck — turning hours of legal review into seconds of automated verification.</div></div>
+          <div class="card" style="border-left:3px solid var(--green)"><div class="card-title" style="color:var(--green)">THE AUDIT CONNECTION</div><div class="card-body">Every CLAUSAL compliance result becomes a permanent part of the acquisition record, satisfying GAO and IG audit requirements for documented compliance review on every transaction.</div></div>
+        </div>
+      </div>
+
+      <!-- ══ FEDBIT ══ -->
+      <div id="s-fedbit" class="section">
+        <div class="sec-tier" style="color:var(--amber)">TIER 4 — FINANCE</div>
+        <div class="sec-title" style="color:var(--amber)">FEDBIT — FEDERAL DIGITAL SETTLEMENT TOKEN · 1:1 USD</div>
+        <div class="sec-divider" style="color:var(--amber)"></div>
+
+        <div class="browser" style="border-top:3px solid var(--amber);border:1px solid #f59e0b33">
+          <div class="browser-bar"><div class="browser-dots"><div class="browser-dot" style="background:#ff5f57"></div><div class="browser-dot" style="background:#febc2e"></div><div class="browser-dot" style="background:#28c840"></div></div><div class="browser-url">anthem-federal.gov/fedbit/ledger</div></div>
+          <div style="background:#0a0800">
+            <div style="background:#111005;padding:9px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #C8A84B33">
+              <div style="display:flex;align-items:center;gap:9px">
+                <div style="width:24px;height:24px;background:linear-gradient(135deg,var(--amber),#92400e);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff">⬡</div>
+                <div><div style="color:var(--amber);font-size:12px;font-weight:700;letter-spacing:3px">FEDBIT</div><div style="color:var(--muted);font-size:6px;letter-spacing:2px">FEDERAL DIGITAL SETTLEMENT LEDGER · 1:1 USD</div></div>
+              </div>
+              <div style="display:flex;gap:14px">
+                <span style="color:var(--amber);font-size:8px">LEDGER</span>
+                <span style="color:var(--dim);font-size:8px">WALLETS</span>
+                <span style="color:var(--dim);font-size:8px">AUDIT</span>
+                <span style="color:var(--dim);font-size:8px">MINT</span>
+              </div>
+            </div>
+            <div class="stat-bar" style="grid-template-columns:repeat(4,1fr)">
+              <div class="stat-cell" style="background:#0a0800"><div class="stat-val" style="color:var(--amber)">$847.2M</div><div class="stat-label">Circulation</div></div>
+              <div class="stat-cell" style="background:#0a0800"><div class="stat-val" style="color:var(--amber)">100%</div><div class="stat-label">Audit Coverage</div></div>
+              <div class="stat-cell" style="background:#0a0800"><div class="stat-val" style="color:var(--amber)">0</div><div class="stat-label">Unreconciled</div></div>
+              <div class="stat-cell" style="background:#0a0800"><div class="stat-val" style="color:var(--amber)">Fed Reserve</div><div class="stat-label">Custodian</div></div>
+            </div>
+            <div style="padding:10px 14px">
+              <div style="font-size:7px;color:var(--amber);letter-spacing:2px;margin-bottom:6px">RECENT LEDGER ENTRIES</div>
+              <div class="ledger-row"><div style="font-size:7px;color:var(--text)">FB-2026-0847291</div><div style="font-size:7px;color:#9ca3af">DEPT OF ARMY / ACC-RI</div><div style="font-size:7px;color:#9ca3af">GridForce Defense LLC</div><div style="font-size:8px;font-weight:700;color:var(--amber)">$284,500</div><span class="badge badge-green">SETTLED</span></div>
+              <div class="ledger-row"><div style="font-size:7px;color:var(--text)">FB-2026-0847290</div><div style="font-size:7px;color:#9ca3af">NAVSUP</div><div style="font-size:7px;color:#9ca3af">AmeriStore Energy</div><div style="font-size:8px;font-weight:700;color:var(--amber)">$1,240,000</div><span class="badge badge-amber">ESCROW</span></div>
+              <div class="ledger-row"><div style="font-size:7px;color:var(--text)">FB-2026-0847289</div><div style="font-size:7px;color:#9ca3af">USSOCOM</div><div style="font-size:7px;color:#9ca3af">TacticalSun Inc.</div><div style="font-size:8px;font-weight:700;color:var(--amber)">$67,800</div><span class="badge badge-green">SETTLED</span></div>
+              <div style="text-align:center;font-size:6px;color:var(--dim);margin-top:5px;letter-spacing:1px">IMMUTABLE · FED RESERVE VERIFIED · DFAS RECONCILED · GAO AUDITABLE</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div>
+            <div style="font-size:8px;color:var(--dim);letter-spacing:2px;margin-bottom:8px">HOW FEDBIT WORKS</div>
+            <div class="card" style="border-left:2px solid var(--amber);margin-bottom:6px"><div class="card-title" style="color:var(--amber)">Congressional Approval</div><div class="card-body">Congress approves the DoD budget. The Federal Mint is triggered to create the corresponding Fedbit allocation instantly — no manual process.</div></div>
+            <div class="card" style="border-left:2px solid var(--amber);margin-bottom:6px"><div class="card-title" style="color:var(--amber)">Instant Agency Dispersal</div><div class="card-body">Fedbit disperses to agencies upon budget passage, allocated like a credit card. No manual allotment delays.</div></div>
+            <div class="card" style="border-left:2px solid var(--amber);margin-bottom:6px"><div class="card-title" style="color:var(--amber)">CO Approval Trigger</div><div class="card-body">When the Contracting Officer signs, Fedbit releases from agency wallet to Anthem Federal clearinghouse immediately.</div></div>
+            <div class="card" style="border-left:2px solid var(--amber);margin-bottom:6px"><div class="card-title" style="color:var(--amber)">Vendor Wallet Credit</div><div class="card-body">Anthem Federal credits the vendor's Fedbit wallet. New vendors serve a 30-day escrow as part of qualification.</div></div>
+            <div class="card" style="border-left:2px solid var(--amber)"><div class="card-title" style="color:var(--amber)">DFAS Auto-Reconciliation</div><div class="card-body">Every Fedbit transaction auto-reconciles with DFAS records at machine speed. Zero unreconciled entries. Zero manual work.</div></div>
+          </div>
+          <div>
+            <div class="card" style="border-left:3px solid var(--red);margin-bottom:12px">
+              <div class="card-title" style="color:var(--red)">WHAT FEDBIT IS NOT</div>
+              <div class="card-body">Fedbit is <span style="color:var(--red)">not a cryptocurrency</span>. No speculative value. No market volatility. No mining. It is a permissioned, government-backed digital ledger token — 1:1 USD, minted only by congressional appropriation, settled exclusively through Federal Reserve infrastructure.</div>
+            </div>
+            <div style="font-size:8px;color:var(--dim);letter-spacing:2px;margin-bottom:8px">AUDIT STANDARDS MET AUTOMATICALLY</div>
+            <div style="background:#0a0800;border:1px solid #2d2000;border-radius:4px;padding:7px 9px;margin-bottom:5px;display:flex;justify-content:space-between"><span style="color:var(--amber);font-size:8px;font-weight:700">OMB Circular A-123</span><span style="color:var(--muted);font-size:7px">Internal controls by design</span></div>
+            <div style="background:#0a0800;border:1px solid #2d2000;border-radius:4px;padding:7px 9px;margin-bottom:5px;display:flex;justify-content:space-between"><span style="color:var(--amber);font-size:8px;font-weight:700">GAO Audit Standards</span><span style="color:var(--muted);font-size:7px">Immutable ledger evidence trail</span></div>
+            <div style="background:#0a0800;border:1px solid #2d2000;border-radius:4px;padding:7px 9px;margin-bottom:5px;display:flex;justify-content:space-between"><span style="color:var(--amber);font-size:8px;font-weight:700">DFAS Reconciliation</span><span style="color:var(--muted);font-size:7px">Real-time auto-match</span></div>
+            <div style="background:#0a0800;border:1px solid #2d2000;border-radius:4px;padding:7px 9px;margin-bottom:5px;display:flex;justify-content:space-between"><span style="color:var(--amber);font-size:8px;font-weight:700">Inspector General</span><span style="color:var(--muted);font-size:7px">Full transaction graph on demand</span></div>
+            <div style="background:#0a0800;border:1px solid #2d2000;border-radius:4px;padding:7px 9px;display:flex;justify-content:space-between"><span style="color:var(--amber);font-size:8px;font-weight:700">Congressional Oversight</span><span style="color:var(--muted);font-size:7px">Budget-to-payment traceability</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ BANKING ══ -->
+      <div id="s-banking" class="section">
+        <div class="sec-tier" style="color:var(--amber)">TIER 4 — FINANCE</div>
+        <div class="sec-title" style="color:var(--amber)">BANKING PARTNERS — INSTITUTIONAL BUY-IN</div>
+        <div class="sec-divider" style="color:var(--amber)"></div>
+        <div style="background:var(--bg3);border:1px solid #C8A84B33;border-top:3px solid var(--gold);border-radius:4px;padding:18px;margin-bottom:16px">
+          <div style="font-family:var(--font-display);font-size:17px;color:#f9fafb;margin-bottom:8px">Fedbit is anchored by institutional financial infrastructure — not speculation.</div>
+          <p style="font-family:var(--font-body);font-size:10px;line-height:1.7;color:#9ca3af;margin:0">Anthem Federal has structured Fedbit around existing federal financial infrastructure — Federal Reserve, Treasury, and DFAS — supplemented by private banking partnerships providing working capital, risk distribution, and vendor liquidity. No appropriated funds are placed at speculative risk.</p>
+        </div>
+        <div class="grid2" style="margin-bottom:14px">
+          <div style="background:var(--bg3);border:1px solid var(--border);border-top:2px solid var(--gold);border-radius:4px;padding:14px"><div style="font-size:10px;font-weight:700;color:var(--gold);margin-bottom:3px">Federal Reserve</div><div style="font-size:7px;color:var(--muted);letter-spacing:1px;margin-bottom:8px">FEDBIT CUSTODIAN & EXCHANGE</div><p style="font-family:var(--font-body);font-size:9px;color:#9ca3af;line-height:1.6;margin:0">Holds all Fedbit private keys. Final settlement authority. Can cancel tokens on discrepancy. Receives notification on every agency dispersal and vendor wallet credit.</p></div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-top:2px solid var(--blue);border-radius:4px;padding:14px"><div style="font-size:10px;font-weight:700;color:var(--blue);margin-bottom:3px">JPMorgan Chase</div><div style="font-size:7px;color:var(--muted);letter-spacing:1px;margin-bottom:8px">PRIMARY BANKING INFRASTRUCTURE</div><p style="font-family:var(--font-body);font-size:9px;color:#9ca3af;line-height:1.6;margin:0">Risk distribution partner. Institutional banking for Fedbit wallet operations. Working capital lines to qualified vendors enabling inventory stocking for fast DoD fulfillment.</p></div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-top:2px solid var(--amber);border-radius:4px;padding:14px"><div style="font-size:10px;font-weight:700;color:var(--amber);margin-bottom:3px">U.S. Treasury / Mint</div><div style="font-size:7px;color:var(--muted);letter-spacing:1px;margin-bottom:8px">FEDBIT MINT AUTHORITY</div><p style="font-family:var(--font-body);font-size:9px;color:#9ca3af;line-height:1.6;margin:0">Congressional budget approval triggers minting. Instant dispersal to agencies upon passage. Replaces manual allotment processes entirely. No delay between budget passage and agency access.</p></div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-top:2px solid var(--green);border-radius:4px;padding:14px"><div style="font-size:10px;font-weight:700;color:var(--green);margin-bottom:3px">DFAS Integration</div><div style="font-size:7px;color:var(--muted);letter-spacing:1px;margin-bottom:8px">DEFENSE FINANCE RECONCILIATION</div><p style="font-family:var(--font-body);font-size:9px;color:#9ca3af;line-height:1.6;margin:0">Fedbit transactions auto-reconcile with DFAS records at machine speed. Eliminates manual reconciliation. 100% match rate on every CO-approved transaction. Zero unreconciled entries.</p></div>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:13px">
+          <div style="font-size:8px;color:var(--gold);letter-spacing:2px;margin-bottom:8px">CAPITAL FLOW</div>
+          <div class="cf-flow">
+            <div class="cf-node" style="border-color:var(--red);color:var(--red)"><div class="cf-name">Congress</div><div class="cf-sub">Budget Approval</div></div>
+            <div class="cf-arrow">→</div>
+            <div class="cf-node" style="border-color:var(--amber);color:var(--amber)"><div class="cf-name">Treasury/Mint</div><div class="cf-sub">Fedbit Minted</div></div>
+            <div class="cf-arrow">→</div>
+            <div class="cf-node" style="border-color:var(--gold);color:var(--gold)"><div class="cf-name">Federal Reserve</div><div class="cf-sub">Custody & Keys</div></div>
+            <div class="cf-arrow">→</div>
+            <div class="cf-node" style="border-color:var(--blue);color:var(--blue)"><div class="cf-name">Agencies</div><div class="cf-sub">Wallets Funded</div></div>
+            <div class="cf-arrow">→</div>
+            <div class="cf-node" style="border-color:#8b5cf6;color:#8b5cf6"><div class="cf-name">Anthem Federal</div><div class="cf-sub">Clearinghouse</div></div>
+            <div class="cf-arrow">→</div>
+            <div class="cf-node" style="border-color:var(--green);color:var(--green)"><div class="cf-name">Vendors</div><div class="cf-sub">Payment Received</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ AUDIT ══ -->
+      <div id="s-audit" class="section">
+        <div class="sec-tier" style="color:#3b82f6">TIER 4 — FINANCE</div>
+        <div class="sec-title" style="color:#3b82f6">100% AUDIT TRAIL — IMMUTABLE FROM REQUIREMENT TO SETTLEMENT</div>
+        <div class="sec-divider" style="color:#3b82f6"></div>
+        <div class="stat-bar" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px">
+          <div class="stat-cell" style="background:#00080f"><div class="stat-val" style="color:#3b82f6">100%</div><div class="stat-label">Transaction Coverage</div></div>
+          <div class="stat-cell" style="background:#00080f"><div class="stat-val" style="color:#3b82f6">0</div><div class="stat-label">Manual Audit Steps</div></div>
+          <div class="stat-cell" style="background:#00080f"><div class="stat-val" style="color:#3b82f6">Real-Time</div><div class="stat-label">DFAS Reconciliation</div></div>
+          <div class="stat-cell" style="background:#00080f"><div class="stat-val" style="color:#3b82f6">Immutable</div><div class="stat-label">Ledger Architecture</div></div>
+        </div>
+        <div id="audit-steps">
+          <div class="audit-row"><div class="audit-num" style="background:#C8A84B22;border:1px solid var(--gold);color:var(--gold)">01</div><div class="audit-card" style="border-left-color:var(--gold)"><div class="audit-head"><span class="audit-step" style="color:var(--gold)">Requirement Created</span><span class="audit-sys">ORCHARD v2.0</span></div><div class="audit-desc">PM initiates requirement. 5-step wizard. All fields logged with timestamp, user ID, and approval status.</div></div></div>
+          <div class="audit-row"><div class="audit-num" style="background:#10b98122;border:1px solid var(--green);color:var(--green)">02</div><div class="audit-card" style="border-left-color:var(--green)"><div class="audit-head"><span class="audit-step" style="color:var(--green)">FAR/DFARS Validation</span><span class="audit-sys">CLAUSAL</span></div><div class="audit-desc">Automated compliance check. Every clause verified. Validation result logged immutably. Cannot be altered retroactively.</div></div></div>
+          <div class="audit-row"><div class="audit-num" style="background:#3b82f622;border:1px solid #3b82f6;color:#3b82f6">03</div><div class="audit-card" style="border-left-color:#3b82f6"><div class="audit-head"><span class="audit-step" style="color:#3b82f6">Approval Workflow</span><span class="audit-sys">ORCHARD / AWE</span></div><div class="audit-desc">PM → CS → KO gates. Each approval logged with identity, timestamp, notes. Cannot be back-dated or skipped.</div></div></div>
+          <div class="audit-row"><div class="audit-num" style="background:#1e88e522;border:1px solid var(--blue);color:var(--blue)">04</div><div class="audit-card" style="border-left-color:var(--blue)"><div class="audit-head"><span class="audit-step" style="color:var(--blue)">Marketplace Transaction</span><span class="audit-sys">Warfighter Prime</span></div><div class="audit-desc">CO-approved purchase logged. Vendor UEI, CAGE, TAA status, item, quantity, price all captured and locked.</div></div></div>
+          <div class="audit-row"><div class="audit-num" style="background:#a78bfa22;border:1px solid var(--purple);color:var(--purple)">05</div><div class="audit-card" style="border-left-color:var(--purple)"><div class="audit-head"><span class="audit-step" style="color:var(--purple)">Vendor Confirmed</span><span class="audit-sys">Vendor Portal</span></div><div class="audit-desc">Compliance status, Fedbit wallet assignment, Apex clearance — all recorded against the transaction hash.</div></div></div>
+          <div class="audit-row"><div class="audit-num" style="background:#ef444422;border:1px solid var(--red);color:var(--red)">06</div><div class="audit-card" style="border-left-color:var(--red)"><div class="audit-head"><span class="audit-step" style="color:var(--red)">Apex Clearance</span><span class="audit-sys">Apex Sentinel</span></div><div class="audit-desc">Risk scoring, anomaly detection, session isolation. Security clearance logged against transaction hash. Session burned.</div></div></div>
+          <div class="audit-row"><div class="audit-num" style="background:#f59e0b22;border:1px solid var(--amber);color:var(--amber)">07</div><div class="audit-card" style="border-left-color:var(--amber)"><div class="audit-head"><span class="audit-step" style="color:var(--amber)">Fedbit Settlement</span><span class="audit-sys">Fedbit Ledger</span></div><div class="audit-desc">Immutable entry created. Federal Reserve notified. Transaction hash permanent. Cannot be altered or deleted. Ever.</div></div></div>
+          <div class="audit-row"><div class="audit-num" style="background:#10b98122;border:1px solid var(--green);color:var(--green)">08</div><div class="audit-card" style="border-left-color:var(--green)"><div class="audit-head"><span class="audit-step" style="color:var(--green)">DFAS Reconciliation</span><span class="audit-sys">Auto-Reconcile Engine</span></div><div class="audit-desc">Fedbit cross-referenced with DFAS at machine speed. Match confirmed instantly. Zero unreconciled entries. GAO accessible on demand.</div></div></div>
+        </div>
+      </div>
+
+      <!-- ══ VENDOR PORTAL ══ -->
+      <div id="s-vendor" class="section">
+        <div class="sec-tier" style="color:var(--purple)">TIER 5 — VENDORS</div>
+        <div class="sec-title" style="color:var(--purple)">VENDOR INTEGRATION PORTAL — ONBOARDING & OPERATIONS</div>
+        <div class="sec-divider" style="color:var(--purple)"></div>
+
+        <div class="browser" style="border-top:3px solid var(--purple);border:1px solid #a78bfa33;margin-bottom:14px">
+          <div class="browser-bar"><div class="browser-dots"><div class="browser-dot" style="background:#ff5f57"></div><div class="browser-dot" style="background:#febc2e"></div><div class="browser-dot" style="background:#28c840"></div></div><div class="browser-url">warfighter-prime.gov/vendor-operations</div></div>
+          <div style="background:#0d1117">
+            <div style="background:#161b22;padding:9px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #30363d">
+              <div><div style="font-size:11px;font-weight:700;color:#f0f6fc;letter-spacing:2px">WARFIGHTER PRIME</div><div style="font-size:7px;color:#8b949e;letter-spacing:1px">VENDOR OPERATIONS CENTER</div></div>
+              <span class="badge" style="background:var(--purple);color:#000">PRIME STATUS ACTIVE</span>
+            </div>
+            <div style="display:flex;border-bottom:1px solid #21262d;padding:0 14px">
+              <div style="padding:6px 9px;font-size:7px;color:var(--purple);border-bottom:2px solid var(--purple)">DASHBOARD</div>
+              <div style="padding:6px 9px;font-size:7px;color:#6e7681;border-bottom:2px solid transparent">ONBOARDING</div>
+              <div style="padding:6px 9px;font-size:7px;color:#6e7681;border-bottom:2px solid transparent">DOCUMENTS</div>
+              <div style="padding:6px 9px;font-size:7px;color:#6e7681;border-bottom:2px solid transparent">COMPLIANCE</div>
+              <div style="padding:6px 9px;font-size:7px;color:#6e7681;border-bottom:2px solid transparent">FEDBIT WALLET</div>
+              <div style="padding:6px 9px;font-size:7px;color:#6e7681;border-bottom:2px solid transparent">ACTIVITY</div>
+            </div>
+            <div style="padding:9px 14px;display:grid;grid-template-columns:repeat(4,1fr);gap:7px">
+              <div style="background:#161b22;border:1px solid #10b98133;border-top:2px solid var(--green);border-radius:4px;padding:8px"><div style="font-size:6px;color:#8b949e;letter-spacing:1px;margin-bottom:3px">PRIME STATUS</div><div style="font-size:12px;font-weight:700;color:var(--green)">ACTIVE</div><div style="font-size:6px;color:#6e7681">Fully onboarded</div></div>
+              <div style="background:#161b22;border:1px solid #f59e0b33;border-top:2px solid var(--amber);border-radius:4px;padding:8px"><div style="font-size:6px;color:#8b949e;letter-spacing:1px;margin-bottom:3px">FEDBIT WALLET</div><div style="font-size:12px;font-weight:700;color:var(--amber)">LIVE</div><div style="font-size:6px;color:#6e7681">Payments enabled</div></div>
+              <div style="background:#161b22;border:1px solid #3b82f633;border-top:2px solid #3b82f6;border-radius:4px;padding:8px"><div style="font-size:6px;color:#8b949e;letter-spacing:1px;margin-bottom:3px">COMPLIANCE</div><div style="font-size:12px;font-weight:700;color:#3b82f6">PASS</div><div style="font-size:6px;color:#6e7681">FAR/DFARS OK</div></div>
+              <div style="background:#161b22;border:1px solid #ef444433;border-top:2px solid var(--red);border-radius:4px;padding:8px"><div style="font-size:6px;color:#8b949e;letter-spacing:1px;margin-bottom:3px">APEX CLEARED</div><div style="font-size:12px;font-weight:700;color:var(--red)">VERIFIED</div><div style="font-size:6px;color:#6e7681">Security active</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div>
+            <div style="font-size:8px;color:var(--dim);letter-spacing:2px;margin-bottom:8px">ONBOARDING PIPELINE</div>
+            <div class="ob-step"><div class="ob-dot" style="background:#1a0a2e;border:1px solid var(--purple);color:var(--purple)">✓</div><div><div class="ob-label" style="color:var(--purple)">SAM.gov Verification</div><div class="ob-desc">Active registration auto-confirmed. Exclusion list checked. UEI validated.</div></div></div>
+            <div class="ob-step"><div class="ob-dot" style="background:#1a0a2e;border:1px solid var(--purple);color:var(--purple)">✓</div><div><div class="ob-label" style="color:var(--purple)">TAA Compliance Check</div><div class="ob-desc">Country of origin verified across all product SKUs. Non-compliant items flagged.</div></div></div>
+            <div class="ob-step"><div class="ob-dot" style="background:#1a0a2e;border:1px solid var(--purple);color:var(--purple)">✓</div><div><div class="ob-label" style="color:var(--purple)">CAGE Code Confirmed</div><div class="ob-desc">DCSA verification complete. Ownership structure reviewed for foreign influence.</div></div></div>
+            <div class="ob-step"><div class="ob-dot" style="background:#1a0a2e;border:1px solid var(--purple);color:var(--purple)">✓</div><div><div class="ob-label" style="color:var(--purple)">Fedbit Wallet Issued</div><div class="ob-desc">Unique digital wallet. 30-day escrow begins. Federal Reserve notified.</div></div></div>
+            <div class="ob-step"><div class="ob-dot" style="background:#1f2937;border:1px solid #374151;color:#6b7280">5</div><div><div class="ob-label" style="color:#9ca3af">Apex Sentinel Clearance</div><div class="ob-desc">AI security screening. Background cleared. Network access provisioned.</div></div></div>
+            <div class="ob-step"><div class="ob-dot" style="background:#1f2937;border:1px solid #374151;color:#6b7280">6</div><div><div class="ob-label" style="color:#9ca3af">Prime Status Granted</div><div class="ob-desc">Vendor goes live. 5-star reviews active. Fedbit payments fully enabled.</div></div></div>
+          </div>
+          <div>
+            <div class="card" style="border-left:3px solid var(--purple);margin-bottom:8px"><div class="card-title" style="color:var(--purple)">GUARANTEED PAYMENT</div><div class="card-body">Anthem Federal fronts payment immediately upon CO approval. No net-30, net-60, or net-90. Fedbit settles in hours. Vendors can rely on the cash flow to fund operations and restock inventory.</div></div>
+            <div class="card" style="border-left:3px solid var(--purple);margin-bottom:8px"><div class="card-title" style="color:var(--purple)">LOW BARRIER TO ENTRY</div><div class="card-body">Small businesses onboard in days. The portal guides every compliance step. No specialized acquisition knowledge required — the system handles compliance automatically.</div></div>
+            <div class="card" style="border-left:3px solid var(--purple);margin-bottom:8px"><div class="card-title" style="color:var(--purple)">COMMERCIAL REVENUE</div><div class="card-body">Vendors serve both DoD and commercial buyers through Warfighter Prime. The Army anchor customer de-risks vendor investment in compliance and inventory.</div></div>
+            <div class="card" style="border-left:3px solid var(--purple)"><div class="card-title" style="color:var(--purple)">WORKING CAPITAL</div><div class="card-body">JPMorgan banking partnership provides working capital lines to qualified vendors, enabling sufficient inventory for fast DoD fulfillment.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ USE CASE ══ -->
+      <div id="s-usecase" class="section">
+        <div class="sec-tier" style="color:var(--purple)">TIER 5 — VENDORS</div>
+        <div class="sec-title" style="color:var(--purple)">VENDOR USE CASE — PAYMENT IS THE INNOVATION</div>
+        <div class="sec-divider" style="color:var(--purple)"></div>
+
+        <div class="slogan-block">
+          <div><div class="slogan-text">LETHALITY THROUGH LOGISTICS</div><div class="slogan-sub">Fast payment → vendor confidence → more vendors → better inventory → faster procurement → warfighter readiness</div></div>
+          <div style="font-size:32px;margin-left:16px;flex-shrink:0">⚡</div>
+        </div>
+
+        <!-- Step selector -->
+        <div style="margin-bottom:18px">
+          <button class="wt-btn active" onclick="wt('discovery',this)" style="border-color:var(--muted)">🔍 Discovery</button>
+          <button class="wt-btn" onclick="wt('onboarding',this)">🚪 Onboarding</button>
+          <button class="wt-btn" onclick="wt('marketplace',this)">🏪 Marketplace</button>
+          <button class="wt-btn" onclick="wt('procurement',this)">📋 Procurement</button>
+          <button class="wt-btn" onclick="wt('security',this)">🛡 Security</button>
+          <button class="wt-btn" onclick="wt('payment',this)">⬡ Payment</button>
+          <button class="wt-btn" onclick="wt('outcome',this)">⚡ Outcome</button>
+        </div>
+
+        <!-- Step: Discovery -->
+        <div id="wt-discovery" class="wt-step active">
+          <div class="wt-header" style="background:var(--bg3);border:1px solid #6b728033;border-top:3px solid #6b7280">
+            <div class="wt-icon" style="color:#6b7280">🔍 DISCOVERY</div>
+            <div class="wt-subtitle">The Problem Before Anthem Federal</div>
+            <div class="wt-actor">GridForce Defense LLC — Small Business, Energy Systems</div>
+            <div class="wt-narrative">GridForce Defense LLC manufactures modular microgrid systems. They build a great product. But getting it in front of DoD buyers means navigating SAM.gov, building a CAGE code, understanding FAR/DFARS, finding solicitations, writing proposals, and waiting 6–12 months to get paid — if they even win. Most small businesses give up. The warfighter goes without better options.</div>
+          </div>
+          <div class="grid2">
+            <div style="background:#0a0000;border:1px solid #2d0000;border-radius:4px;padding:13px">
+              <div style="font-size:8px;color:var(--red);letter-spacing:1px;margin-bottom:8px">BEFORE ANTHEM FEDERAL</div>
+              <div class="before-item"><span style="color:var(--red)">✗</span>Average DoD procurement cycle: 180+ days</div>
+              <div class="before-item"><span style="color:var(--red)">✗</span>Vendor compliance burden: thousands of hours</div>
+              <div class="before-item"><span style="color:var(--red)">✗</span>Payment terms: Net-30 to Net-90</div>
+              <div class="before-item"><span style="color:var(--red)">✗</span>Market access: requires expensive BD teams</div>
+              <div class="before-item" style="border:none"><span style="color:var(--red)">✗</span>Result: DoD buys from the same 5 vendors every time</div>
+            </div>
+            <div class="card" style="border-left:3px solid var(--green)">
+              <div class="card-title" style="color:var(--green)">THE INSIGHT</div>
+              <div class="card-body">Fast payment is the innovation. When vendors trust they will be paid quickly, they invest in stock, scale production, and compete aggressively on quality and price. The warfighter gets better options. That is lethality through logistics.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step: Onboarding -->
+        <div id="wt-onboarding" class="wt-step">
+          <div class="wt-header" style="background:var(--bg3);border:1px solid #a78bfa33;border-top:3px solid var(--purple)">
+            <div class="wt-icon" style="color:var(--purple)">🚪 ONBOARDING</div>
+            <div class="wt-subtitle">GridForce Discovers Warfighter Prime</div>
+            <div class="wt-actor">GridForce Defense LLC — Begins Vendor Integration Portal</div>
+            <div class="wt-narrative">GridForce finds Warfighter Prime. The Vendor Integration Portal walks them through the entire compliance pipeline step by step. SAM.gov verification is automated. TAA compliance is checked against their product SKUs. CAGE code confirmed. Within days — not months — GridForce has a Fedbit digital wallet assigned and a 30-day escrow clock running.</div>
+          </div>
+          <div style="font-size:8px;color:var(--dim);letter-spacing:2px;margin-bottom:8px">ONBOARDING PIPELINE</div>
+          <div class="grid3" style="margin-bottom:12px">
+            <div style="background:#064e3b;border:1px solid var(--green);border-radius:4px;padding:9px"><div style="font-size:7px;color:var(--green);margin-bottom:3px">01 ✓ COMPLETE</div><div style="font-size:8px;font-weight:700;color:var(--green);margin-bottom:3px">SAM.gov Verification</div><div style="font-size:7px;color:var(--muted)">Active registration auto-confirmed. Exclusion list checked.</div></div>
+            <div style="background:#064e3b;border:1px solid var(--green);border-radius:4px;padding:9px"><div style="font-size:7px;color:var(--green);margin-bottom:3px">02 ✓ COMPLETE</div><div style="font-size:8px;font-weight:700;color:var(--green);margin-bottom:3px">TAA Compliance Check</div><div style="font-size:7px;color:var(--muted)">All GridForce product SKUs verified. All pass.</div></div>
+            <div style="background:#064e3b;border:1px solid var(--green);border-radius:4px;padding:9px"><div style="font-size:7px;color:var(--green);margin-bottom:3px">03 ✓ COMPLETE</div><div style="font-size:8px;font-weight:700;color:var(--green);margin-bottom:3px">CAGE Code Confirmed</div><div style="font-size:7px;color:var(--muted)">DCSA verification complete. Ownership reviewed.</div></div>
+            <div style="background:#064e3b;border:1px solid var(--green);border-radius:4px;padding:9px"><div style="font-size:7px;color:var(--green);margin-bottom:3px">04 ✓ COMPLETE</div><div style="font-size:8px;font-weight:700;color:var(--green);margin-bottom:3px">Fedbit Wallet Issued</div><div style="font-size:7px;color:var(--muted)">Digital wallet created. 30-day escrow begins. Fed Reserve notified.</div></div>
+            <div style="background:#1f2937;border:1px solid #374151;border-radius:4px;padding:9px"><div style="font-size:7px;color:var(--muted);margin-bottom:3px">05 — PENDING</div><div style="font-size:8px;font-weight:700;color:#9ca3af;margin-bottom:3px">Apex Sentinel Clearance</div><div style="font-size:7px;color:var(--muted)">AI security screening. Background cleared.</div></div>
+            <div style="background:#1f2937;border:1px solid #374151;border-radius:4px;padding:9px"><div style="font-size:7px;color:var(--muted);margin-bottom:3px">06 — PENDING</div><div style="font-size:8px;font-weight:700;color:#9ca3af;margin-bottom:3px">Prime Status Granted</div><div style="font-size:7px;color:var(--muted)">GridForce goes live on Warfighter Prime.</div></div>
+          </div>
+          <div class="card" style="border-left:3px solid var(--purple)"><div class="card-title" style="color:var(--purple)">THE INSIGHT</div><div class="card-body">The 30-day escrow is not a barrier — it is a trust-builder. It proves to DoD buyers that every vendor on the platform has been vetted, their products are compliant, and their wallets are connected to real inventory. The Army gets a qualified, reliable vendor ecosystem. GridForce gets access to the world's largest customer base.</div></div>
+        </div>
+
+        <!-- Step: Marketplace -->
+        <div id="wt-marketplace" class="wt-step">
+          <div class="wt-header" style="background:var(--bg3);border:1px solid #1e88e533;border-top:3px solid var(--blue)">
+            <div class="wt-icon" style="color:var(--blue)">🏪 MARKETPLACE</div>
+            <div class="wt-subtitle">GridForce Lists Products on Warfighter Prime</div>
+            <div class="wt-actor">GridForce Defense LLC — Active Vendor, Warfighter Prime</div>
+            <div class="wt-narrative">GridForce is live. Their Modular Microgrid System appears in Warfighter Prime's Energy Resilience category alongside 146 other vetted vendors. They set price, upload specs, and confirm inventory levels in real time. An installation commander at Fort Liberty, reviewing energy resilience options, finds GridForce's product, sees the FAR compliance badge, the 5-star reviews, and clicks Add to Acquisition.</div>
+          </div>
+          <div class="card" style="border-left:3px solid var(--blue)"><div class="card-title" style="color:var(--blue)">THE INSIGHT</div><div class="card-body">GridForce is now competing on merit — not on who has the best lobbyist or the longest BD relationship. The marketplace creates genuine competition, which drives quality up and cost down for the Army. Every small business that enters the platform makes the warfighter's options better. That is lethality through logistics.</div></div>
+        </div>
+
+        <!-- Step: Procurement -->
+        <div id="wt-procurement" class="wt-step">
+          <div class="wt-header" style="background:var(--bg3);border:1px solid #10b98133;border-top:3px solid var(--green)">
+            <div class="wt-icon" style="color:var(--green)">📋 PROCUREMENT</div>
+            <div class="wt-subtitle">ORCHARD Generates the Acquisition Package</div>
+            <div class="wt-actor">ORCHARD v2.0 — Automated Compliance Package Generation</div>
+            <div class="wt-narrative">The installation commander's cart item triggers ORCHARD. The system generates the full acquisition package — SOW, FAR/DFARS compliance checklist, IGCE, and contract clauses — in minutes. CLAUSAL cross-references every clause against current regulations. The package routes PM → CS → KO. Each gate is logged. Nothing proceeds without approval.</div>
+          </div>
+          <div style="font-size:8px;color:var(--dim);letter-spacing:2px;margin-bottom:8px">ACQUISITION TIMELINE</div>
+          <div id="procurement-timeline">
+            <div class="tl-row"><div class="tl-time" style="color:var(--green)">T+0m</div><div class="tl-event" style="border-left-color:var(--green)"><span class="tl-label">Commander clicks 'Add to Acquisition' on Warfighter Prime</span><span class="tl-sys">Warfighter Prime</span></div></div>
+            <div class="tl-row"><div class="tl-time" style="color:var(--green)">T+3m</div><div class="tl-event" style="border-left-color:var(--green)"><span class="tl-label">ORCHARD generates SOW, compliance package, IGCE automatically</span><span class="tl-sys">ORCHARD</span></div></div>
+            <div class="tl-row"><div class="tl-time" style="color:var(--green)">T+5m</div><div class="tl-event" style="border-left-color:var(--green)"><span class="tl-label">CLAUSAL validates every FAR/DFARS clause — all pass</span><span class="tl-sys">CLAUSAL</span></div></div>
+            <div class="tl-row"><div class="tl-time" style="color:var(--green)">T+15m</div><div class="tl-event" style="border-left-color:var(--green)"><span class="tl-label">Package routes to Program Manager — approved</span><span class="tl-sys">ORCHARD</span></div></div>
+            <div class="tl-row"><div class="tl-time" style="color:var(--green)">T+45m</div><div class="tl-event" style="border-left-color:var(--green)"><span class="tl-label">Contract Specialist reviews — approved</span><span class="tl-sys">ORCHARD</span></div></div>
+            <div class="tl-row"><div class="tl-time" style="color:var(--amber)">T+2h</div><div class="tl-event" style="border-left-color:var(--amber)"><span class="tl-label">Contracting Officer signs — acquisition authorized</span><span class="tl-sys">ORCHARD</span></div></div>
+          </div>
+          <div class="card" style="margin-top:12px;border-left:3px solid var(--green)"><div class="card-title" style="color:var(--green)">THE INSIGHT</div><div class="card-body">What used to take weeks of back-and-forth between acquisition teams, legal, and vendors now takes hours. The compliance work is done by the machine — the humans are approving, not assembling. That speed is the military advantage.</div></div>
+        </div>
+
+        <!-- Step: Security -->
+        <div id="wt-security" class="wt-step">
+          <div class="wt-header" style="background:#0a0000;border:1px solid #ef444433;border-top:3px solid var(--red)">
+            <div class="wt-icon" style="color:var(--red)">🛡 SECURITY CLEARANCE</div>
+            <div class="wt-subtitle">Apex Sentinel Clears the Transaction</div>
+            <div class="wt-actor">Apex Sentinel — AI Security Overwatch</div>
+            <div class="wt-narrative">The moment the Contracting Officer signs, Apex Sentinel runs its final security sweep. The transaction is scored against anomaly patterns — no flags. GridForce's Fedbit wallet, identity, and inventory levels are verified in real time. The transaction is isolated in an ephemeral session and cleared for Fedbit settlement. The session is burned immediately, leaving no persistent attack surface.</div>
+          </div>
+          <div style="font-size:8px;color:var(--dim);letter-spacing:2px;margin-bottom:8px">APEX SENTINEL TRANSACTION CLEARANCE</div>
+          <div class="check-grid" style="margin-bottom:12px">
+            <div class="check-item"><span class="check-label">Vendor identity verified</span><span class="check-status">✓ CLEAR</span></div>
+            <div class="check-item"><span class="check-label">Fedbit wallet integrity</span><span class="check-status">✓ CLEAR</span></div>
+            <div class="check-item"><span class="check-label">Transaction anomaly scan</span><span class="check-status">✓ CLEAR</span></div>
+            <div class="check-item"><span class="check-label">Inventory confirmation</span><span class="check-status">✓ CLEAR</span></div>
+            <div class="check-item"><span class="check-label">Network intrusion check</span><span class="check-status">✓ CLEAR</span></div>
+            <div class="check-item"><span class="check-label">Session burn complete</span><span class="check-status">✓ DONE</span></div>
+          </div>
+          <div class="card" style="border-left:3px solid var(--red)"><div class="card-title" style="color:var(--red)">THE INSIGHT</div><div class="card-body">A defense procurement system moving billions of dollars is the highest-value target imaginable. Apex Sentinel makes every transaction inherently secure — not by adding a compliance layer after the fact, but by making security the architecture. The session-burn model means there is no persistent surface to attack. Every transaction is a clean room.</div></div>
+        </div>
+
+        <!-- Step: Payment -->
+        <div id="wt-payment" class="wt-step">
+          <div class="wt-header" style="background:#0a0800;border:1px solid #f59e0b33;border-top:3px solid var(--amber)">
+            <div class="wt-icon" style="color:var(--amber)">⬡ PAYMENT</div>
+            <div class="wt-subtitle">Fedbit Hits GridForce's Wallet — 2 Hours After CO Signs</div>
+            <div class="wt-actor">Fedbit Settlement Engine + Anthem Federal Clearinghouse</div>
+            <div class="wt-narrative">This is the innovation. Two hours after the Contracting Officer signed, $284,500 in Fedbit — 1:1 USD — lands in GridForce's wallet. Anthem Federal's clearinghouse fronted the payment the moment the KO signed, without waiting for government disbursement cycles. The Federal Reserve is notified. An immutable ledger entry is created. DFAS auto-reconciles. GridForce gets paid in hours, not months.</div>
+          </div>
+          <div style="font-size:8px;color:var(--dim);letter-spacing:2px;margin-bottom:8px;margin-top:14px">FEDBIT SETTLEMENT RECORD</div>
+          <div class="ledger-box">
+            <div class="ledger-grid">
+              <div><div class="ledger-key">TRANSACTION ID</div><div class="ledger-val">FB-2026-0847291</div></div>
+              <div><div class="ledger-key">AGENCY</div><div class="ledger-val">DEPT OF ARMY / ACC-RI</div></div>
+              <div><div class="ledger-key">VENDOR</div><div class="ledger-val">GridForce Defense LLC</div></div>
+              <div><div class="ledger-key">ITEM</div><div class="ledger-val">Modular Microgrid System</div></div>
+              <div><div class="ledger-key">AMOUNT</div><div class="ledger-amount">$284,500</div></div>
+              <div><div class="ledger-key">ELAPSED SINCE CO SIGNATURE</div><div class="ledger-val" style="color:var(--green)">2h 03m</div></div>
+            </div>
+            <div class="ledger-footer">
+              <span style="font-size:7px;color:var(--muted);letter-spacing:1px">IMMUTABLE · FED RESERVE VERIFIED · DFAS RECONCILED · GAO AUDITABLE</span>
+              <span class="badge badge-green" style="font-size:8px;padding:4px 10px">✓ SETTLED</span>
+            </div>
+          </div>
+          <div style="background:linear-gradient(135deg,#1a0a2e,var(--bg3));border:1px solid #C8A84B44;border-left:4px solid var(--gold);border-radius:0 4px 4px 0;padding:14px 16px;margin-top:12px">
+            <div style="font-family:var(--font-display);font-style:italic;font-size:13px;color:var(--gold);margin-bottom:6px">LETHALITY THROUGH LOGISTICS</div>
+            <p style="font-family:var(--font-body);font-size:9px;line-height:1.7;color:#9ca3af;margin:0">GridForce now has $284,500 in working capital. They restock inventory. They hire. They invest in the next product. They come back to Warfighter Prime. More vendors follow. Better options for the warfighter. That is lethality through logistics.</p>
+          </div>
+        </div>
+
+        <!-- Step: Outcome -->
+        <div id="wt-outcome" class="wt-step">
+          <div class="wt-header" style="background:var(--bg3);border:1px solid #C8A84B33;border-top:3px solid var(--gold)">
+            <div class="wt-icon" style="color:var(--gold)">⚡ OUTCOME</div>
+            <div class="wt-subtitle">The Flywheel Effect</div>
+            <div class="wt-actor">The Ecosystem Effect — From One Vendor to Warfighter Readiness</div>
+            <div class="wt-narrative">GridForce's experience becomes the template. They tell other small businesses. Warfighter Prime grows from 847 vendors to 2,000. Competition increases. Prices drop. Delivery times shrink. Installation commanders get better options, faster. The Army's readiness posture improves without additional appropriations — because private capital is flowing into the vendor ecosystem, anchored by the Army as a stable, long-term customer.</div>
+          </div>
+          <div style="font-size:8px;color:var(--dim);letter-spacing:2px;margin-bottom:10px;margin-top:14px">THE FLYWHEEL EFFECT</div>
+          <div class="flywheel">
+            <div class="fw-node">Fast payment → vendor confidence</div><div class="fw-arrow">→</div>
+            <div class="fw-node">Vendor confidence → more vendors enter</div><div class="fw-arrow">→</div>
+            <div class="fw-node">More vendors → genuine competition</div><div class="fw-arrow">→</div>
+            <div class="fw-node">Competition → better quality, lower prices</div><div class="fw-arrow">→</div>
+            <div class="fw-node">Better options → faster procurement</div><div class="fw-arrow">→</div>
+            <div class="fw-node">Faster procurement → warfighter readiness</div><div class="fw-arrow">→</div>
+            <div class="fw-node final">LETHALITY</div>
+          </div>
+          <div class="closing-slogan">
+            <div class="closing-slogan-main">LETHALITY THROUGH LOGISTICS</div>
+            <div class="closing-slogan-sub">ANTHEM FEDERAL · PAYMENT IS THE INNOVATION</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ ARMY PRIORITIES ══ -->
+      <div id="s-priorities" class="section">
+        <div class="sec-tier" style="color:var(--muted)">INTEL</div>
+        <div class="sec-title" style="color:var(--muted)">ANTHEM FEDERAL MAPPED TO ARMY PRIORITY AREAS</div>
+        <div class="sec-divider" style="color:var(--muted)"></div>
+        <div style="margin-bottom:14px">
+          <button class="pri-btn active" onclick="pri(0,this)">⚡ 01</button>
+          <button class="pri-btn" onclick="pri(1,this)">🏭 02</button>
+          <button class="pri-btn" onclick="pri(2,this)">🔗 03</button>
+          <button class="pri-btn" onclick="pri(3,this)">🏗️ 04</button>
+          <button class="pri-btn" onclick="pri(4,this)">⚙️ 05</button>
+          <button class="pri-btn" onclick="pri(5,this)">🪨 06</button>
+        </div>
+        <div id="pri-0" class="pri-detail active"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="font-size:22px">⚡</span><div><div style="font-size:7px;color:var(--gold);letter-spacing:2px">PRIORITY AREA 01</div><div style="font-family:var(--font-display);font-size:15px;color:#f9fafb">Energy Resilience &amp; Dominance</div></div></div><p style="font-family:var(--font-body);font-size:11px;line-height:1.8;color:#9ca3af">Warfighter Prime connects vetted energy technology vendors directly to installation commanders. ORCHARD manages acquisition workflow. Fedbit enables immediate payment upon CO approval — no waiting for disbursement cycles. Every transaction immutably logged with full banking settlement trail.</p></div>
+        <div id="pri-1" class="pri-detail"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="font-size:22px">🏭</span><div><div style="font-size:7px;color:var(--gold);letter-spacing:2px">PRIORITY AREA 02</div><div style="font-family:var(--font-display);font-size:15px;color:#f9fafb">Organic Industrial Base</div></div></div><p style="font-family:var(--font-body);font-size:11px;line-height:1.8;color:#9ca3af">Anthem Federal's clearinghouse maps OIB suppliers into a living vendor registry with real-time capability data, ISO:9001 compliance scoring, and proximity to Army depots. Banking partners provide working capital lines to OIB vendors. Apex Sentinel monitors all OIB transactions for anomalies.</p></div>
+        <div id="pri-2" class="pri-detail"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="font-size:22px">🔗</span><div><div style="font-size:7px;color:var(--gold);letter-spacing:2px">PRIORITY AREA 03</div><div style="font-family:var(--font-display);font-size:15px;color:#f9fafb">Strengthening Logistics &amp; Supply Chains</div></div></div><p style="font-family:var(--font-body);font-size:11px;line-height:1.8;color:#9ca3af">Warfighter Prime reduces DoD procurement from months to minutes. Fedbit instant settlement eliminates payment lag. Vendors carry stock because payment is guaranteed and fast. The Vendor Integration Portal gives suppliers real-time visibility into orders and disbursement.</p></div>
+        <div id="pri-3" class="pri-detail"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="font-size:22px">🏗️</span><div><div style="font-size:7px;color:var(--gold);letter-spacing:2px">PRIORITY AREA 04</div><div style="font-family:var(--font-display);font-size:15px;color:#f9fafb">Real Assets &amp; Facilities Utilization</div></div></div><p style="font-family:var(--font-body);font-size:11px;line-height:1.8;color:#9ca3af">ORCHARD supports lease structures, OTA agreements, and dual-use asset contracts. Fedbit enables structured payment schedules for long-term facilities arrangements with 100% immutable audit trail on every disbursement — satisfying OMB A-123 and GAO requirements automatically.</p></div>
+        <div id="pri-4" class="pri-detail"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="font-size:22px">⚙️</span><div><div style="font-size:7px;color:var(--gold);letter-spacing:2px">PRIORITY AREA 05</div><div style="font-family:var(--font-display);font-size:15px;color:#f9fafb">Advanced Manufacturing &amp; Technology Adoption</div></div></div><p style="font-family:var(--font-body);font-size:11px;line-height:1.8;color:#9ca3af">AWE is the integration layer connecting commercial technology vendors through a qualification pipeline that transitions promising tech from commercial to DoD deployment. Banking partners provide bridge financing for technology vendors scaling to DoD contract requirements.</p></div>
+        <div id="pri-5" class="pri-detail"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="font-size:22px">🪨</span><div><div style="font-size:7px;color:var(--gold);letter-spacing:2px">PRIORITY AREA 06</div><div style="font-family:var(--font-display);font-size:15px;color:#f9fafb">Critical Minerals &amp; Resource Development</div></div></div><p style="font-family:var(--font-body);font-size:11px;line-height:1.8;color:#9ca3af">Anthem Federal's clearinghouse supports multi-tier supply chain visibility for critical minerals. Every mineral purchase traceable from source to installation on the Fedbit ledger, satisfying NDAA supply chain integrity requirements. Apex Sentinel provides continuous threat monitoring.</p></div>
+      </div>
+
+      <!-- ══ LIVE DEMOS ══ -->
+      <div id="s-demos" class="section">
+        <div class="sec-tier" style="color:var(--muted)">INTEL</div>
+        <div class="sec-title" style="color:var(--muted)">LIVE DEMONSTRATIONS — OPERATIONAL PLATFORMS</div>
+        <div class="sec-divider" style="color:var(--muted)"></div>
+        <div style="background:var(--bg3);border:1px solid #C8A84B33;border-top:3px solid var(--gold);border-radius:4px;padding:18px;margin-bottom:16px">
+          <div style="font-family:var(--font-display);font-size:17px;color:#f9fafb;margin-bottom:8px">These are not mockups. These are live, working platforms.</div>
+          <p style="font-family:var(--font-body);font-size:10px;line-height:1.7;color:#9ca3af;margin:0">Anthem Federal's core platforms are operational and publicly demonstrable today. The links below provide immediate access to CLAUSAL and the full ORCHARD Acquisition Workflow Environment — the compliance and workflow backbone of the entire ecosystem.</p>
+        </div>
+        <div class="demo-card">
+          <div>
+            <div class="demo-label">CLAUSAL — FAR/DFARS Compliance Analyzer</div>
+            <div class="demo-desc">Live automated FAR/DFARS compliance analysis engine — the regulatory backbone of Warfighter Prime and ORCHARD.</div>
+            <a href="https://shdwdvr.github.io/CLAUSAL/" target="_blank" class="demo-url">↗ shdwdvr.github.io/CLAUSAL/</a>
+          </div>
+          <a href="https://shdwdvr.github.io/CLAUSAL/" target="_blank" class="demo-btn">OPEN DEMO →</a>
+        </div>
+        <div class="demo-card">
+          <div>
+            <div class="demo-label">AWE — Acquisition Workflow Environment</div>
+            <div class="demo-desc">Full ORCHARD v2.0 acquisition workflow — live and operational. Complete requirement-to-approval pipeline. No login required.</div>
+            <a href="https://anthem-federal.github.io/Aqusition_Workflow_Environment/" target="_blank" class="demo-url">↗ anthem-federal.github.io/Aqusition_Workflow_Environment/</a>
+          </div>
+          <a href="https://anthem-federal.github.io/Aqusition_Workflow_Environment/" target="_blank" class="demo-btn">OPEN DEMO →</a>
+        </div>
+      </div>
+
+      <!-- ══ CONTACT ══ -->
+      <div id="s-contact" class="section">
+        <div class="sec-tier" style="color:var(--muted)">INTEL</div>
+        <div class="sec-title" style="color:var(--muted)">CONTACT & NEXT STEPS</div>
+        <div class="sec-divider" style="color:var(--muted)"></div>
+        <div style="background:linear-gradient(135deg,var(--bg3),#0f1e35);border:1px solid #C8A84B33;border-radius:4px;padding:26px;margin-bottom:14px">
+          <div style="font-family:var(--font-display);font-size:17px;color:#f9fafb;margin-bottom:11px">Anthem Federal is ready to brief Army leadership immediately.</div>
+          <p style="font-family:var(--font-body);font-size:10px;line-height:1.8;color:#9ca3af;margin:0 0 18px">We respectfully request a 45-minute live demonstration of Warfighter Prime, ORCHARD v2.0, Fedbit, Apex Sentinel, and the Vendor Integration Portal for Army Strategic Capital Initiative leadership. The operating model described in this RFI is not theoretical — it is operational today.</p>
+          <div class="grid2">
+            <div class="contact-field"><div class="contact-key">ORGANIZATION</div><div class="contact-val">Anthem Federal</div></div>
+            <div class="contact-field"><div class="contact-key">PRIMARY POC</div><div class="contact-val">David Cannon</div></div>
+            <div class="contact-field" style="margin-top:12px"><div class="contact-key">PHONE</div><div class="contact-val">757-513-5335</div></div>
+            <div class="contact-field" style="margin-top:12px"><div class="contact-key">EMAIL</div><div class="contact-val">dcannon@gmail.com</div></div>
+            <div class="contact-field" style="margin-top:12px"><div class="contact-key">CLAUSAL DEMO</div><div class="contact-val"><a href="https://shdwdvr.github.io/CLAUSAL/" target="_blank" style="color:#3b82f6;text-decoration:none">shdwdvr.github.io/CLAUSAL/</a></div></div>
+            <div class="contact-field" style="margin-top:12px"><div class="contact-key">AWE DEMO</div><div class="contact-val"><a href="https://anthem-federal.github.io/Aqusition_Workflow_Environment/" target="_blank" style="color:#3b82f6;text-decoration:none">anthem-federal.github.io/AWE/</a></div></div>
+            <div class="contact-field" style="margin-top:12px"><div class="contact-key">SUBMIT RESPONSE TO</div><div class="contact-val" style="font-size:8px">usarmy.pentagon.mbx.strategic-capital-initiative@army.mil</div></div>
+            <div class="contact-field" style="margin-top:12px"><div class="contact-key">RESPONSE DEADLINE</div><div class="contact-val" style="color:var(--red)">April 2, 2026 · 17:00 EDT</div></div>
+          </div>
+        </div>
+        <div class="closing-slogan">
+          <div class="closing-slogan-main">LETHALITY THROUGH LOGISTICS</div>
+          <div class="closing-slogan-sub">PAYMENT IS THE INNOVATION · ANTHEM FEDERAL</div>
+        </div>
+      </div>
+
+    </div><!-- /main -->
+  </div><!-- /body -->
+</div><!-- /app -->
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('s-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function wt(id, btn) {
+  document.querySelectorAll('.wt-step').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.wt-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('wt-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function pri(idx, btn) {
+  document.querySelectorAll('.pri-detail').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.pri-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('pri-' + idx).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
